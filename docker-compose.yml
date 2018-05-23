@@ -1,0 +1,35 @@
+version: '2'
+services:
+  elasticsearch:
+    image: elasticsearch:2.4.5
+    volumes:
+      - 'esdata:/usr/share/elasticsearch/data'
+    ports:
+      - 9200
+
+  mongo:
+    image: mongo:3.5.6
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - 27017
+
+  node:
+    image: kbhbilleder:latest-dev
+    environment:
+      VIRTUAL_HOST: kbhbilleder.docker
+      VIRTUAL_PORT: 9000
+    ports:
+      - 9000
+    volumes:
+      - ./projects/:/home/node:cached
+      - /home/node/kbh-billeder/node_modules
+      - /home/node/collections-online/node_modules
+      - /home/node/collections-online-cumulus/node_modules
+    links:
+      - mongo
+      - elasticsearch
+
+volumes:
+  esdata:
+    driver: local

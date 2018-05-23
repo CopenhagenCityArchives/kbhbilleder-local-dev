@@ -1,0 +1,49 @@
+FROM node:8.11
+
+EXPOSE 9000
+
+# Dependencies needed for and the node-canvas to install correctly and
+# supervisor + nginx for deployment
+RUN apt-get update && apt-get install -y \
+    libcairo2-dev \
+    libpango1.0-dev \
+    libgif-dev \
+    build-essential \
+    g++ \
+    supervisor \
+    nginx \
+&& rm -rf /var/lib/apt/lists/* # Keeps the image size down
+
+ENV NODE_ENV=development
+ENV NPM_CONFIG_LOGLEVEL warn
+
+# Build node_modules for kbh-billeder
+WORKDIR /home/node/kbh-billeder
+COPY projects/kbh-billeder/package*.json ./
+RUN npm install --progress=false
+
+# Build node_modules for collections-online
+WORKDIR /home/node/collections-online
+COPY projects/collections-online/package*.json ./
+RUN npm link
+
+# Build node_modules for collections-online-cumulus
+WORKDIR /home/node/collections-online-cumulus
+COPY projects/collections-online-cumulus/package*.json ./
+RUN npm link
+
+# Remove relative links and replace them with absolute.
+WORKDIR /home/node/kbh-billeder/node_modules
+RUN rm -rf collections-online && rm -rf collections-online-cumulus && \
+    ln -s /usr/local/lib/node_modules/collections-online collections-online && ln -s /usr/local/lib/node_modules/collections-online-cumulus collections-online-cumulus
+WORKDIR /home/node/collections-online-cumulus/node_modules
+RUN rm -rf collections-online && ln -s /usr/local/lib/node_modules/collections-online collections-online
+WORKDIR /home/node/collections-online/node_modules
+RUN rm -rf collections-online && ln -s /usr/local/lib/node_modules/collections-online collections-online
+
+# Move our entrypoint into place and register it.
+COPY docker/scripts/wait-for-it.sh /usr/local/bin/
+WORKDIR /home/node/kbh-billeder
+CMD /usr/local/bin/wait-for-it.sh elasticsearch:9200 -- npm run start:dev
+
+EXPOSE 9000
