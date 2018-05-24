@@ -9,25 +9,13 @@ Requirements
 2. Clone this repository
 3. [Add an .env file to ./kbhbilleder/](https://github.com/CopenhagenCityArchives/kbh-billeder#create-a-env-file-with-environment-variables)
 
-Mac & Linux
-------------
-1. `gem install dory`
-2. `dory up`
-3. `docker-compose up -d && docker-compose logs -f node`
-4. [Go to kbhbilleder.docker](http://kbhbilleder.docker)
-5. ☕️🤷‍♂️ ???
-6. Profit! 💰
-
-Windows
+Get started
 -------
-1. `git submodule init`
-2. `git submodule update --recursive --remote`
-3. `docker-compose up -d; docker-compose logs -f node`
-4. `docker ps`
-5. Find the kbhbilleder-docker_node port
-6. Access `localhost:port`
-7. ☕️🤷‍♂️ ???
-8. Profit! 💰
+1. Clone this repo
+2. run scripts/clone-projects.sh (in Windows: run git clone for the projects collections-online, collections-online-cumulus and kbhbilleder and place them in the projects folder)
+3. run build-image.sh (uses docker to build kbhbilleder-dev). If you're having problems run the build command manually: ``docker build --tag kbhbilleder:latest-dev -f "./docker/dev-env-Dockerfile" "./.."``
+4. add a .env in /projects/kbh-billeder/
+5. run ``docker-compose up``
 
 Tips & tricks
 -------------
