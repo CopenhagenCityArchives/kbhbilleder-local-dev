@@ -13,7 +13,7 @@ Get started
 -------
 1. Clone this repo
 2. run scripts/clone-projects.sh (in Windows: run git clone for the projects collections-online, collections-online-cumulus and kbhbilleder and place them in the projects folder)
-3. run build-image.sh (uses docker to build kbhbilleder-dev). If you're having problems run the build command manually: ``docker build --tag kbhbilleder:latest-dev -f "./docker/dev-env-Dockerfile" "./.."``
+3. run build-image.sh (uses docker to build kbhbilleder-dev). If you're having problems, run the build command manually: ``docker build --tag kbhbilleder:latest-dev -f "./docker/dev-env-Dockerfile" "./.."``
 4. add a .env in /projects/kbh-billeder/
 5. run ``docker-compose up``
 
