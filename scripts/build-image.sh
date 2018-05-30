@@ -5,4 +5,4 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd ${SCRIPT_DIR}/../
 
 # check for directories
-docker build --tag kbhbilleder:latest-dev -f "${SCRIPT_DIR}/../docker/dev-env-Dockerfile" "${SCRIPT_DIR}/.."
+time docker build --tag eu.gcr.io/kbh-billeder/kbhbilleder-docker:latest -f "${SCRIPT_DIR}/../docker/dev-env-Dockerfile" "${SCRIPT_DIR}/.."

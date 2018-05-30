@@ -18,7 +18,7 @@ services:
       - 27017
 
   node:
-    image: kbhbilleder:latest-dev
+    image: eu.gcr.io/kbh-billeder/kbhbilleder-docker:latest
     environment:
       VIRTUAL_HOST: kbhbilleder.docker
       VIRTUAL_PORT: 9000
