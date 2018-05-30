@@ -6,6 +6,9 @@ services:
       - 'esdata:/usr/share/elasticsearch/data'
     ports:
       - 9200
+    environment:
+      VIRTUAL_HOST: es.kbhbilleder.docker
+      VIRTUAL_PORT: 9200
 
   mongo:
     image: mongo:3.5.6
