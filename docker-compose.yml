@@ -1,7 +1,7 @@
 version: '2'
 services:
   elasticsearch:
-    image: elasticsearch:2.4.5
+    image: elasticsearch:5.6.4
     volumes:
       - 'esdata:/usr/share/elasticsearch/data'
     ports:
