@@ -6,16 +6,14 @@ Docker setup for kbhbilleder.
 Requirements
 ------------
 1. [Install Docker](https://store.docker.com/search?type=edition&offering=community)
-2. Clone this repository
-3. [Add an .env file to ./kbhbilleder/](https://github.com/CopenhagenCityArchives/kbh-billeder#create-a-env-file-with-environment-variables)
+2. Dory
 
 Get started
 -------
 1. Clone this repo
-2. run scripts/clone-projects.sh (in Windows: run git clone for the projects collections-online, collections-online-cumulus and kbhbilleder and place them in the projects folder)
-3. run build-image.sh (uses docker to build kbhbilleder-dev). If you're having problems, run the build command manually: ``docker build --tag kbhbilleder:latest-dev -f "./docker/dev-env-Dockerfile" "./.."``
-4. add a .env in /projects/kbh-billeder/
-5. run ``docker-compose up``
+2. Clone kbh-billeder, collections-online and collections-online-cumulus into projects/
+3. [Add an .env file to ./kbhbilleder/](https://github.com/CopenhagenCityArchives/kbh-billeder#create-a-env-file-with-environment-variables)
+4. run ``docker-compose up``
 
 Tips & tricks
 -------------
@@ -25,3 +23,4 @@ Tips & tricks
 If it doesn't rebuild, run `docker-compose up --force-rebuild --build`
 * You can run `npm install` inside the container with `docker-compose exec node npm install`
 * Start indexing manually (starts automatically) with `docker-compose exec node run index all`
+* If you make changes to your local projects and need a dev-env image for it (read: you made major changes to package.json) run `scripts/build-local-dev-image.sh`
