@@ -1,0 +1,35 @@
+FROM buildpack-deps:jessie
+
+RUN apt-get -y update && \
+    apt-get -y install \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        software-properties-common && \
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
+    apt-key fingerprint 0EBFCD88 && \
+    add-apt-repository \
+       "deb [arch=amd64] https://download.docker.com/linux/debian \
+       $(lsb_release -cs) \
+       stable" && \
+    apt-get -y update && \
+    apt-get -y install docker-ce \
+    && rm -rf /var/lib/apt/lists/* # Keeps the image size down
+
+ENV KBH_BILLEDER_BRANCH=master
+ENV COLLECTIONS_ONLINE_BRANCH=testing
+ENV COLLECTIONS_ONLINE_CUMULUS_BRANCH=master
+ENV DOCKER_TAG=latest
+
+CMD mkdir /build
+
+WORKDIR /build
+
+# Add the dev env dockerfile and dependencies.
+COPY scripts/wait-for-it.sh ./
+COPY docker/dev-env/Dockerfile-dev-env ./
+
+# Add script we're going to use to do the build.
+COPY docker/builder/build.sh ./
+
+CMD /build/build.sh
