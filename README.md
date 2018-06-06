@@ -6,7 +6,7 @@ Docker setup for kbhbilleder.
 Requirements
 ------------
 1. [Install Docker](https://store.docker.com/search?type=edition&offering=community)
-2. Dory
+2. [Dory](https://github.com/FreedomBen/dory#installation)
 
 Get started
 -------
