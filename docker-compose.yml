@@ -19,6 +19,10 @@ services:
 
   node:
     image: eu.gcr.io/kbh-billeder/kbhbilleder-docker:latest
+    # Use the following to build your own image.
+    #build:
+    #  dockerfile: ./docker/dev-env/Dockerfile-dev-env
+    #  context: .
     environment:
       VIRTUAL_HOST: kbhbilleder.docker
       VIRTUAL_PORT: 9000
