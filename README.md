@@ -12,9 +12,9 @@ Ved en komplet ny opstart af projektet skal følgende gøres:
 * Hent de tre repos collections-online:testing, collections-online-cumulus:master og kbh-billeder:master til mappen /projects
 Det gøres med disse kommandoer:
 
-* git clone --branch="master" https://github.com/CopenhagenCityArchives/kbh-billeder.git projects/kbh-billeder
-* git clone --branch="testing" https://github.com/CopenhagenCityArchives/collections-online.git projects/collections-online
-* git clone --branch="master" https://github.com/CopenhagenCityArchives/collections-online-cumulus.git projects/collections-online-cumulus
+  * `git clone --branch="master ELLER simplified_config" https://github.com/CopenhagenCityArchives/kbh-billeder.git projects/kbh-billeder`
+  * `git clone --branch="testing" https://github.com/CopenhagenCityArchives/collections-online.git projects/collections-online`
+  * `git clone --branch="master" https://github.com/CopenhagenCityArchives/collections-online-cumulus.git projects/collections-online-cumulus`
 
 Udfyld .env med de nødvendige variabler (se .env-example for en komplet liste over indstillinger). De enkelte variabler kan også sættes i docker-compose-filen hvis det er nødvendigt. Disse vil i så fald override variablerne i .env-filen.
 
@@ -36,6 +36,9 @@ Følgende lokationer er tilgængelige på din localhost:
 * http://locahost:8000: Nginx-frontenden (cache for billeder fra Cumulus)
 * http://locahost:9000: Direkte adgang til Node-appen
 * http://localhost:27017: MongoDB (data fra Keystone CMS)
+
+# Todo
+* Pt. virker vandmærkning af beskyttede billeder ikke
 
 # Ændringer ift. kbhbilleder-docker
 ## Ny docker-compose fil
