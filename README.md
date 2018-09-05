@@ -12,7 +12,7 @@ Ved en komplet ny opstart af projektet skal følgende gøres:
 * Hent de tre repos collections-online:testing, collections-online-cumulus:master og kbh-billeder:master til mappen /projects
 Det gøres med disse kommandoer:
 
-  * `git clone --branch="master ELLER simplified_config" https://github.com/CopenhagenCityArchives/kbh-billeder.git projects/kbh-billeder`
+  * `git clone --branch="master ELLER simplified_settings" https://github.com/CopenhagenCityArchives/kbh-billeder.git projects/kbh-billeder`
   * `git clone --branch="testing" https://github.com/CopenhagenCityArchives/collections-online.git projects/collections-online`
   * `git clone --branch="master" https://github.com/CopenhagenCityArchives/collections-online-cumulus.git projects/collections-online-cumulus`
 
