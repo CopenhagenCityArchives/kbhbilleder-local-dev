@@ -16,15 +16,15 @@ Det gøres med disse kommandoer:
   * `git clone --branch="testing" https://github.com/CopenhagenCityArchives/collections-online.git projects/collections-online`
   * `git clone --branch="master" https://github.com/CopenhagenCityArchives/collections-online-cumulus.git projects/collections-online-cumulus`
 
-Udfyld .env med de nødvendige variabler (se .env-example for en komplet liste over indstillinger). De enkelte variabler kan også sættes i docker-compose-filen hvis det er nødvendigt. Disse vil i så fald override variablerne i .env-filen.
+* Udfyld .env med de nødvendige variabler (se .env-example for en komplet liste over indstillinger). De enkelte variabler kan også sættes i docker-compose-filen hvis det er nødvendigt. Disse vil i så fald override variablerne i .env-filen.
 
-Kør `docker-compose -f docker-compose.build.local.yml up --force-recreate --build` og vent cirka 10 minutter
+* Kør `docker-compose -f docker-compose.build.local.yml up --force-recreate --build` og vent cirka 10 minutter
 
-Kør `docker-compose -f docker-compose.build.local.yml exec nodejs npm run prepublish`  (bygger frontenden)
+* Kør `docker-compose -f docker-compose.build.local.yml exec nodejs npm run prepublish`  (bygger frontenden)
 
-Kør `docker-compose -f docker-compose.build.local.yml exec nodejs npm run index`  (henter assets fra Cumulus, som er ændret de seneste 10 minutter)
+* Kør `docker-compose -f docker-compose.build.local.yml exec nodejs npm run index`  (henter assets fra Cumulus, som er ændret de seneste 10 minutter)
 
-Nu er du klar til at udvikle og teste!
+* Nu er du klar til at udvikle og teste!
 
 ## Nyttige kommandoer
 * Kør nodemon og gulp watch (god til udvikling): `docker-compose -f docker-compose.build.local.yml exec nodejs npm start:dev`
