@@ -32,7 +32,7 @@ services:
     ports:
       - 8000:80
     depends_on:
-      - node
+      - nodejs
 
   #Node.js: The main application server
   nodejs:

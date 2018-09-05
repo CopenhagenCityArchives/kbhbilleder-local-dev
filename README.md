@@ -18,17 +18,19 @@ Det gøres med disse kommandoer:
 
 Udfyld .env med de nødvendige variabler.
 
-Kør `docker-compose up --force-recreate --build` og vent cirka 10 minutter
+Kør `docker-compose -f docker-compose.build.local.yml up --force-recreate --build` og vent cirka 10 minutter
 
-Kør `docker-compose exec -it node /bin/bash` og kør følgende:
+Kør `docker-compose -f docker-compose.build.local.yml exec nodejs npm run prepublish`  (bygger frontenden)
 
-* `npm run prepublish` (bygger frontenden)
-
-* `npm run index` (henter de assets, som er blevet ændret inden for de seneste 10 minutter)
+Kør `docker-compose -f docker-compose.build.local.yml exec nodejs npm run index`  (bygger frontenden)
 
 Nu er du klar til at udvikle og teste!
 
-# Porte
+## Nyttige kommandoer
+* Kør nodemon og gulp watch (god til udvikling): `docker-compose -f docker-compose.build.local.yml exec nodejs npm start:dev`
+
+
+# Porte og services
 Følgende lokationer er tilgængelige på din localhost:
 * http://localhost:9200: ElasticSearch (de indekserede assets fra Cumulus)
 * http://locahost:80: Nginx-frontenden (cache for billeder fra Cumulus)
