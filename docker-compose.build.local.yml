@@ -1,0 +1,59 @@
+version: '2'
+services:
+  #Elastic search. Holding the indexed assets
+  elasticsearch:
+    image: elasticsearch:5.6.4
+    container_name: elasticsearch
+    ports:
+      - 9200:9200
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    mem_limit: 1g
+    volumes:
+      - 'esdata:/usr/share/elasticsearch/data'
+
+  #MongoDB. Holding article text for KeyStone CMS
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - 27017:27017
+    depends_on:
+    - elasticsearch
+
+  #Nginx: Frontend server, used for image caching
+  nginx:
+    container_name: nginx
+    build:
+        context: ./
+        dockerfile: ./docker/nginx/Dockerfile
+    volumes:
+        - ./projects/kbh-billeder/:/tmp
+    ports:
+      - 8000:80
+    depends_on:
+      - node
+
+  #Node.js: The main application server
+  nodejs:
+    build:
+      dockerfile: ./docker/nodejs/Dockerfile.dev
+      context: .
+    container_name: nodejs
+    depends_on:
+      - mongo
+      - elasticsearch
+    ports:
+      - 9000:9000
+    command: npm run start:nodemon
+    volumes:
+      - ./projects/:/home/node
+      - /home/node/kbh-billeder/node_modules
+      - /home/node/collections-online/node_modules
+      - /home/node/collections-online-cumulus/node_modules
+      - ./.env:/home/node/kbh-billeder/.env
+      - ./google-key.json:/home/node/kbh-billeder/google-key.json
+
+volumes:
+  esdata:
+    driver: local
