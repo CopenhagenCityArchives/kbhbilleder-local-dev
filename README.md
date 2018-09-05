@@ -39,6 +39,7 @@ Følgende lokationer er tilgængelige på din localhost:
 
 ## Todo
 * Pt. virker vandmærkning af beskyttede billeder ikke
+* Setuppet er ikke testet på Linux/Mac OS
 
 ## Ændringer ift. kbhbilleder-docker
 ### Ny docker-compose fil
