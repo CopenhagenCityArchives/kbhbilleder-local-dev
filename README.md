@@ -13,16 +13,18 @@ Ved en komplet ny opstart af projektet skal følgende gøres:
 Det gøres med disse kommandoer:
 
 * git clone --branch="master" https://github.com/CopenhagenCityArchives/kbh-billeder.git projects/kbh-billeder
-* git clone --branch="testing" https://github.com/CopenhagenCityArchives/collections-online.git projects/collections-online 
+* git clone --branch="testing" https://github.com/CopenhagenCityArchives/collections-online.git projects/collections-online
 * git clone --branch="master" https://github.com/CopenhagenCityArchives/collections-online-cumulus.git projects/collections-online-cumulus
+
+Udfyld .env med de nødvendige variabler.
 
 Kør `docker-compose up --force-recreate --build` og vent cirka 10 minutter
 
 Kør `docker-compose exec -it node /bin/bash` og kør følgende:
 
-`npm run prepublish` (bygger frontenden)
+* `npm run prepublish` (bygger frontenden)
 
-`npm run index` (henter de assets, som er blevet ændret inden for de seneste 10 minutter)
+* `npm run index` (henter de assets, som er blevet ændret inden for de seneste 10 minutter)
 
 Nu er du klar til at udvikle og teste!
 
@@ -56,4 +58,3 @@ Følgende lokationer er tilgængelige på din localhost:
 
 ## .env
 * Omstruktureret .env så dens variabler er mere overskueligt arrangeret
-
