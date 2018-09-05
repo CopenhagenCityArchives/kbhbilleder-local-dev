@@ -1,12 +1,12 @@
-kbhbilleder-local-dev
-==================
+# kbhbilleder-local-dev
+
 Simplificeret Docker-compose setup, som tager udgangspunkt i https://github.com/CopenhagenCityArchives/kbh-billeder
-# Mål
+## Mål
 Et lokalt setup, med så mange features som muligt aktiveret, men med begrænset afhængigheder til eksterne services/prebuilds.
 
 Det er ikke meningen, at dette setup skal køres i produktion, men at det kan bruges som udgangspunkt for rettelser i koden i de tre repositories, som udgør kbhbilleder.dk
 
-# Kom i gang
+## Kom i gang
 Ved en komplet ny opstart af projektet skal følgende gøres:
 * Hent nyeste udgave af kbhbilleder-docker-development
 * Hent de tre repos collections-online:testing, collections-online-cumulus:master og kbh-billeder:master til mappen /projects
@@ -30,18 +30,18 @@ Nu er du klar til at udvikle og teste!
 * Kør nodemon og gulp watch (god til udvikling): `docker-compose -f docker-compose.build.local.yml exec nodejs npm start:dev`
 
 
-# Porte og services
+## Porte og services
 Følgende lokationer er tilgængelige på din localhost:
 * http://localhost:9200: ElasticSearch (de indekserede assets fra Cumulus)
 * http://locahost:8000: Nginx-frontenden (cache for billeder fra Cumulus)
 * http://locahost:9000: Direkte adgang til Node-appen
 * http://localhost:27017: MongoDB (data fra Keystone CMS)
 
-# Todo
+## Todo
 * Pt. virker vandmærkning af beskyttede billeder ikke
 
-# Ændringer ift. kbhbilleder-docker
-## Ny docker-compose fil
+## Ændringer ift. kbhbilleder-docker
+### Ny docker-compose fil
 * Nginx udskilt som egen server. Det giver et mere overskueligt server-setup, og hurtigere builds.
 * Minimeret ram-forbrug for ElasticSearch (512 mb), og hukommelsesforbruget for servicen er eksplicit angivet i docker-compose-fil. Det gør det nemmere at skalere løsningen til lokale ressourcer
 * Fjernet data-volume for MongoDB, da mappingen ikke er understøttet for ikke-EXT4-drev (Windows), jf. dette issue: https://github.com/docker-library/mongo/issues/190. Det gør det muligt at køre løsningen på Windows, og giver ikke udfordringer ift. gemte data.
@@ -49,17 +49,17 @@ Følgende lokationer er tilgængelige på din localhost:
 * Fjernet links-parametrene fra node-servicen. De er ikke længere understøttet.
 * .env og google-key.json bliver nu mappet fra rodmappen.
 
-## Dockerfile for Node-servicen
+### Dockerfile for Node-servicen
 * Fjernet brugen af wait-for-it til gengæld for depends_on-parameteren i Docker-compose. Der er ikke oplevet problemer med denne løsning, og gør brugen af npm run mere gennemskuelig
 * Flyttet npm variablerne NODE_ENV og NPM_CONFIG_LOGLEVEL til .env-filen.
 
-## Nginx-servicen
+### Nginx-servicen
 * Fjernet image-libraries fra nginx-serveren, da disse ikke ser ud til at blive brugt.
 * Opsat proxyen til Node-servicen korrekt (der er ikke behov for en upstream-konfiguration)
 
 
-## npm run:
+### npm run:
 * Kommandoen nodemon er lavet om til følgende: `nodemon --watch . --watch ../collections-online --watch ../collections-online-cumulus server.js`
 
-## .env
+### .env
 * Omstruktureret .env så dens variabler er mere overskueligt arrangeret
