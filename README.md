@@ -1,4 +1,4 @@
-kbhbilleder-docker
+kbhbilleder-local-dev
 ==================
 Simplificeret Docker-compose setup, som tager udgangspunkt i https://github.com/CopenhagenCityArchives/kbh-billeder
 # Mål
