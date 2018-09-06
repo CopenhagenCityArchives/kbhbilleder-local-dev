@@ -41,7 +41,6 @@ Følgende lokationer er tilgængelige på din localhost:
 * http://localhost:27017: MongoDB (data fra Keystone CMS)
 
 ## Todo
-* Pt. virker vandmærkning af beskyttede billeder ikke
 * Setuppet er ikke testet på Linux og Mac OS
 
 ## Ændringer ift. kbhbilleder-docker
