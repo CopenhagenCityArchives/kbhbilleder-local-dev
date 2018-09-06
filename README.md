@@ -1,6 +1,7 @@
 # kbhbilleder-local-dev
 
-Simplificeret Docker-compose setup, som tager udgangspunkt i https://github.com/CopenhagenCityArchives/kbh-billeder
+Simplificeret docker-compose setup, som tager udgangspunkt i https://github.com/CopenhagenCityArchives/kbh-billeder
+
 ## Mål
 Et lokalt setup, med så mange features som muligt aktiveret, men med begrænset afhængigheder til eksterne services/prebuilds.
 
@@ -16,7 +17,7 @@ Det gøres med disse kommandoer:
   * `git clone --branch="testing" https://github.com/CopenhagenCityArchives/collections-online.git projects/collections-online`
   * `git clone --branch="master" https://github.com/CopenhagenCityArchives/collections-online-cumulus.git projects/collections-online-cumulus`
 
-* Udfyld .env med de nødvendige variabler (se .env-example for en komplet liste over indstillinger). De enkelte variabler kan også sættes i docker-compose-filen hvis det er nødvendigt. Disse vil i så fald override variablerne i .env-filen.
+* Udfyld .env med de nødvendige variabler (se .env-example for en komplet liste over indstillinger), og placer den i roden af dette projekt (den vil blive mappet til de relvante lokationer i projects-mappen). De enkelte variabler kan også sættes i docker-compose-filen hvis det er nødvendigt. Disse vil i så fald override variablerne i .env-filen.
 
 * Kør `docker-compose -f docker-compose.build.local.yml up --force-recreate --build` og vent cirka 10 minutter
 
