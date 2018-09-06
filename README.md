@@ -8,6 +8,8 @@ Et lokalt setup, med så mange features som muligt aktiveret, men med begrænset
 Det er ikke meningen, at dette setup skal køres i produktion, men at det kan bruges som udgangspunkt for rettelser i koden i de tre repositories, som udgør kbhbilleder.dk
 
 ## Kom i gang
+Projektet kræver at du har Docker og Git installeret.
+
 Ved en komplet ny opstart af projektet skal følgende gøres:
 * Hent nyeste udgave af kbhbilleder-docker-development
 * Hent de tre repos collections-online:testing, collections-online-cumulus:master og kbh-billeder:master til mappen /projects
