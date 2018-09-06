@@ -11,7 +11,7 @@ Det er ikke meningen, at dette setup skal køres i produktion, men at det kan br
 Projektet kræver at du har Docker og Git installeret.
 
 Ved en komplet ny opstart af projektet skal følgende gøres:
-* Hent nyeste udgave af kbhbilleder-docker-development
+* Klon dette projekt: `git clone https://github.com/CopenhagenCityArchives/kbhbilleder-local-dev`
 * Hent de tre repos collections-online:testing, collections-online-cumulus:master og kbh-billeder:master til mappen /projects
 Det gøres med disse kommandoer:
 
