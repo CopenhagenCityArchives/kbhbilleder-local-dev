@@ -16,11 +16,16 @@ COPY projects/collections-online-cumulus/package*.json ./
 RUN npm link
 
 # Remove relative links and replace them with absolute.
+## kbh-billeder
 WORKDIR /home/node/kbh-billeder/node_modules
 RUN rm -rf collections-online && rm -rf collections-online-cumulus && \
     ln -s /usr/local/lib/node_modules/collections-online collections-online && ln -s /usr/local/lib/node_modules/collections-online-cumulus collections-online-cumulus
+
+## collections-online-cumulus
 WORKDIR /home/node/collections-online-cumulus/node_modules
 RUN rm -rf collections-online && ln -s /usr/local/lib/node_modules/collections-online collections-online
+
+##collections-online
 WORKDIR /home/node/collections-online/node_modules
 RUN rm -rf collections-online && ln -s /usr/local/lib/node_modules/collections-online collections-online
 

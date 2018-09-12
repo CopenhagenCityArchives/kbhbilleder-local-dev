@@ -18,7 +18,7 @@ Det gøres med disse kommandoer:
 
 * Udfyld .env med de nødvendige variabler (se .env-example for en komplet liste over indstillinger). De enkelte variabler kan også sættes i docker-compose-filen hvis det er nødvendigt. Disse vil i så fald override variablerne i .env-filen.
 
-* Kør `docker-compose -f docker-compose.build.local.yml up --force-recreate --build` og vent cirka 10 minutter
+* Kør `docker-compose -f docker-compose.build.local.yml up -d --force-recreate --build` og vent cirka 10 minutter
 
 * Kør `docker-compose -f docker-compose.build.local.yml exec nodejs npm run prepublish`  (bygger frontenden)
 
