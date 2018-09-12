@@ -1,22 +1,25 @@
 # kbhbilleder-local-dev
 
-Simplificeret Docker-compose setup, som tager udgangspunkt i https://github.com/CopenhagenCityArchives/kbh-billeder
+Simplificeret docker-compose setup, som tager udgangspunkt i https://github.com/CopenhagenCityArchives/kbh-billeder
+
 ## Mål
 Et lokalt setup, med så mange features som muligt aktiveret, men med begrænset afhængigheder til eksterne services/prebuilds.
 
 Det er ikke meningen, at dette setup skal køres i produktion, men at det kan bruges som udgangspunkt for rettelser i koden i de tre repositories, som udgør kbhbilleder.dk
 
 ## Kom i gang
+Projektet kræver at du har Docker og Git installeret.
+
 Ved en komplet ny opstart af projektet skal følgende gøres:
-* Hent nyeste udgave af kbhbilleder-docker-development
+* Klon dette projekt: `git clone https://github.com/CopenhagenCityArchives/kbhbilleder-local-dev`
 * Hent de tre repos collections-online:testing, collections-online-cumulus:master og kbh-billeder:master til mappen /projects
 Det gøres med disse kommandoer:
 
-  * `git clone --branch="master ELLER simplified_settings" https://github.com/CopenhagenCityArchives/kbh-billeder.git projects/kbh-billeder`
+  * `git clone --branch="simplified_settings" https://github.com/CopenhagenCityArchives/kbh-billeder.git projects/kbh-billeder`
   * `git clone --branch="testing" https://github.com/CopenhagenCityArchives/collections-online.git projects/collections-online`
   * `git clone --branch="master" https://github.com/CopenhagenCityArchives/collections-online-cumulus.git projects/collections-online-cumulus`
 
-* Udfyld .env med de nødvendige variabler (se .env-example for en komplet liste over indstillinger). De enkelte variabler kan også sættes i docker-compose-filen hvis det er nødvendigt. Disse vil i så fald override variablerne i .env-filen.
+* Udfyld .env med de nødvendige variabler (se .env-example for en komplet liste over indstillinger), og placer den i roden af dette projekt (den vil blive mappet til de relvante lokationer i projects-mappen). De enkelte variabler kan også sættes i docker-compose-filen hvis det er nødvendigt. Disse vil i så fald override variablerne i .env-filen.
 
 * Kør `docker-compose -f docker-compose.build.local.yml up -d --force-recreate --build` og vent cirka 10 minutter
 
@@ -38,8 +41,7 @@ Følgende lokationer er tilgængelige på din localhost:
 * http://localhost:27017: MongoDB (data fra Keystone CMS)
 
 ## Todo
-* Pt. virker vandmærkning af beskyttede billeder ikke
-* Setuppet er ikke testet på Linux/Mac OS
+* Setuppet er ikke testet på Linux og Mac OS
 
 ## Ændringer ift. kbhbilleder-docker
 ### Ny docker-compose fil
